@@ -1,0 +1,22 @@
+pkgname=loadctl
+pkgver=1.0.1
+pkgrel=1
+#pkgdesc=""
+arch=('any')
+#url="https://gitlab.com/garuda-linux/applications/garuda-welcome"
+#license=('GPL3')
+#depends=('')
+#optdepends=( 'xorg-xrandr' 'xorg-xinput' 'garuda-assistant' 'garuda-network-assistant' 'qwikaccess' 'garuda-gamer' 'garuda-boot-options')
+makedepends=('git')
+groups=('core')
+source=("git+https://github.com/Vampire-Offical/system-monitor")
+md5sums=('SKIP')
+
+
+package() {
+	mkdir -p $pkgdir/etc/systemd/system/
+	mkdir -p $pkgdir/usr/bin/
+	cd "$srcdir/system-monitor"
+	cp system-updater.service $pkgdir/etc/systemd/system/
+	cp system-updater $pkgdir/usr/bin/
+}
